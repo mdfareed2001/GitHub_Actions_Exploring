@@ -1,0 +1,49 @@
+# We can run a job based on conditions like run this job only there is pull request and 
+# run this job only if there is push to master branch etc..
+# WE can also put conditions before running a step.
+
+name: conditions before running a job and step.
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  arg1: 100
+  arg2: 100
+
+jobs:
+  job-run-on-pull-request:
+    name: Run only if there is pull request. 
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull request
+        run: echo I am in pull request!    
+  job-run-on-push-to-master:
+    name: Run if there is push to master
+    if: github.event.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo I am in master! 
+  job-run-steps-on-condition:
+    runs-on: ubuntu-latest
+    steps:
+      - name: String equality
+        run: echo Is ok
+        if: ${{ 'aaa' == 'aaa' }}
+      - name: String equality case
+        run: echo Is this case sensitive?
+        if:  ${{ 'aaa' == 'AAA' }}
+      - name: String equality never run
+        run: echo This won't run
+        if:  ${{ 'aaa' == 'bbb' }}      
+      - name: Numbers and vars
+        run: echo works with vars
+        if:  ${{ env.arg1 == env.arg2 }}  
+      - name: Null never run
+        run: echo This won't run
+        if:  ${{ null == 'bbb' }}      
