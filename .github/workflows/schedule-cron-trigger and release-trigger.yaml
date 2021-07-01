@@ -1,0 +1,27 @@
+# Here's a quick example of how to START GitHub Actions workflow on particular time Schedule CRON.
+# Refer https://crontab.guru   for details
+# name: START GitHub Actions workflow for cron schedule expressions
+# on: 
+#   schedule:
+#     - cron: "0/25 * * * *"       #at every 25th minute
+# jobs:
+#   Job-Schedule:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Run a one-line script
+#         run: echo "STARTED GitHub Actions workflow at schedule from CRON "
+
+###################################################################################################
+# Here's a quick example of how to START GitHub Actions workflow on Releases.
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+name: START GitHub Actions workflow when a release has been published or created.
+on:
+  release:
+    types: [created, published]
+
+jobs:
+  Job-on-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo "STARTED GitHub Actions workflow on release"
