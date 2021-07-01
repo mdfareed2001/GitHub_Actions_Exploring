@@ -14,10 +14,10 @@
 ###################################################################################################
 # Here's a quick example of how to START GitHub Actions workflow on Releases.
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-name: START GitHub Actions workflow when a release has been published or created.
+name: START GitHub Actions workflow when a release has been published.
 on:
   release:
-    types: [created, published]
+    types: [published]
 
 jobs:
   Job-on-release:
