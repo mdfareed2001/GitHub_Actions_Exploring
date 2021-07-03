@@ -27,7 +27,7 @@ jobs:
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: '@'
+          repo: GitHub_Actions_Exploring1
           event_type: functional-tests
           message: |
             {
