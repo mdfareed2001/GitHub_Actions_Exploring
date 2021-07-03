@@ -8,25 +8,25 @@ jobs:
   job-build:
     name: Dispatch to `GitHub_Actions_Exploring1`
     runs-on: ubuntu-latest
-    steps:
-      - name: Emit repository_dispatch
-        uses: mvasigh/dispatch-action@main
-        with:
-          # You should create a personal access token and store it in your repository
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: GitHub_Actions_Exploring1
-          owner: mdfareed2001
-          event_type: functional-tests
-
-# Dispatcher workflow in submodule
     # steps:
-    #   - name: Dispatch submodule_push event
+    #   - name: Emit repository_dispatch
     #     uses: mvasigh/dispatch-action@main
     #     with:
+    #       # You should create a personal access token and store it in your repository
     #       token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    #       repo: '@'
-    #       event_type: submodule_push
-    #       message: |
-    #         {
-    #           "foo": "bar"
-    #         }
+    #       repo: GitHub_Actions_Exploring1
+    #       owner: mdfareed2001
+    #       event_type: functional-tests
+
+# Dispatcher workflow in submodule
+    steps:
+      - name: Dispatch submodule_push event
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo: '@'
+          event_type: submodule_push
+          message: |
+            {
+              "foo": "bar"
+            }
