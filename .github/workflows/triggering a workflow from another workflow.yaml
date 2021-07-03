@@ -18,14 +18,17 @@ jobs:
     #       owner: mdfareed2001
     #       event_type: functional-tests
 
-# Dispatcher workflow in submodule
+# By default, this action will hydrate the client_payload of the repository dispatch event with the original event payload 
+# under the event key (equivalent to github.context.payload). You can also send any additional data by supplying the message 
+# input option, which will also be available under the message key of the client_payload object. This can be used in other 
+# workflows by accessing ${{ github.event.client_payload.message }} in any workflow triggered by this action
     steps:
       - name: Dispatch submodule_push event
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repo: '@'
-          event_type: submodule_push
+          event_type: functional-tests
           message: |
             {
               "foo": "bar"
