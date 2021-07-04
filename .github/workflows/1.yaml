@@ -11,6 +11,22 @@ jobs:
         with:
           # You should create a personal access token and store it in your repository
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: tracker-repo  #functional-tests
+          repo: functional-tests    #tracker-repo  
           owner: Essentra
-          event_type: Deployment  #functional-tests
+          event_type: functional-tests    #Deployment  
+          message: |
+            {
+              curl --location --request POST 'https://api.github.com/repos/Essentra/functional-tests/dispatches' --header 'Accept: application/vnd.github.everest-preview+json' --header 'Content-Type: application/json' --header 'Authorization: Basic OmdocF9aMHE0WDVOeTFKVzJsaENLVXY3RlV5Z0U2RkdTYTIwTXhtR2Q=' --data-raw '{
+                  "event_type": "functional-tests",
+                  "client_payload": {
+                  "version_tag": "release-7.1+11_Fareed",
+                  "ENVIRONMENT": "develop",
+                  "SUITE": "@smoke:non-en",
+                  "CUSTOM_LOCALE": "en-au tr-tr",
+                  "BPR_SITES": "en-es es-es pt-es",
+                  "LOCALE_EN": "en-sg en-my en-fi en-nl en-gb en-fr en-us en-ca en-se en-es en-za en-it en-de en-at en-pl en-cz en-sk en-ro en-hu en-01:supply",
+                  "LOCALE_NON_EN": "en-sg en-my fi-fi nl-nl fr-fr sv-se es-es it-it de-at de-de pl-pl cs-cz sk-sk ro-ro hu-hu en-gb en-us en-za en-ca en-01:supply",
+                  "LOCALE_ALL": "en-fi en-nl en-gb en-fr en-us en-ca fi-fi nl-nl fr-nl fr-fr en-se sv-se en-es es-es pt-es en-za en-it it-it en-de en-at de-at de-de fr-de en-pl en-tr tr-tr pl-pl en-cz en-sk sk-sk cs-cz en-ro ro-ro en-hu hu-hu en-sg en-my"	   	   
+                  }
+              }'
+            }
