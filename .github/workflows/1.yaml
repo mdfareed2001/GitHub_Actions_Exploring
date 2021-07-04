@@ -1,0 +1,16 @@
+name: triggering a workflow from another workflow.
+on: push
+
+jobs:
+  job-build:
+    name: Dispatch to `GitHub_Actions_Exploring1`
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
+        with:
+          # You should create a personal access token and store it in your repository
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo: functional-tests
+          owner: Essentra
+          event_type: functional-tests
